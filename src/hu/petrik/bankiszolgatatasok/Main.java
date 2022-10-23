@@ -8,10 +8,9 @@ public class Main {
 
         Bank bank=new Bank();
         bank.szamlaNyitas(t1, 1000).befizet(3490);
-        bank.szamlaNyitas(t2,600).kivesz(500);
-
+        bank.szamlaNyitas(t2,5000).kivesz(3490);
         System.out.println(bank.getOsszHitelkeret());
-        System.out.println(bank.getOsszEgyenleg(t1));
         System.out.println(bank.getOsszEgyenleg(t2));
+
     }
 }

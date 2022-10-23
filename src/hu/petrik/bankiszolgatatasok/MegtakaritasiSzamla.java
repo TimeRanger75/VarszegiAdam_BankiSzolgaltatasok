@@ -2,11 +2,11 @@ package hu.petrik.bankiszolgatatasok;
 
 public class MegtakaritasiSzamla extends Szamla{
     private double kamat;
-    public double alapkamat;
+    public double alapKamat=1.1;
 
     public MegtakaritasiSzamla(Tulajdonos tulajdonos) {
         super(tulajdonos);
-        this.alapkamat=1.1;
+        this.kamat=alapKamat;
     }
 
     public double getKamat() {
@@ -29,6 +29,6 @@ public class MegtakaritasiSzamla extends Szamla{
     }
 
     public void kamatJovairas(){
-        aktualisEgyenleg*=alapkamat;
+        aktualisEgyenleg*=kamat;
     }
 }

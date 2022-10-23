@@ -11,17 +11,14 @@ public class Bank {
     }
 
     public Szamla szamlaNyitas(Tulajdonos tulajdonos, int hitelKeret){
-        if (hitelKeret>0){
+        if (hitelKeret<0){
             HitelSzamla h=new HitelSzamla(tulajdonos, hitelKeret);
             szamlaLista.add(h);
             return h;
-        } else if (hitelKeret==0) {
+        } else {
             MegtakaritasiSzamla m_sz= new MegtakaritasiSzamla(tulajdonos);
             szamlaLista.add(m_sz);
             return m_sz;
-        }
-        else {
-            throw new IllegalArgumentException("Negatív hitelkerettel nem lehet számlát nyitni");
         }
     }
 
@@ -44,20 +41,20 @@ public class Bank {
                 m_szamla=szamlaLista.get(i);
             }
         }
-        for (Szamla sz :
+        for (Szamla szamla :
                 szamlaLista) {
-            if (sz.getTulajdonos()==tulajdonos || sz.getAktualisEgyenleg()>m_szamla.getAktualisEgyenleg())
-                m_szamla=sz;
+            if (szamla.getTulajdonos()==tulajdonos && szamla.getAktualisEgyenleg()>m_szamla.getAktualisEgyenleg())
+                m_szamla=szamla;
         }
         return m_szamla;
     }
 
     public long getOsszHitelkeret(){
         long ossz=0;
-        for (Szamla sz :
+        for (Szamla szamla :
                 szamlaLista) {
-            if (sz instanceof HitelSzamla){
-                ossz+=((HitelSzamla) sz).getHitelKeret();
+            if (szamla instanceof HitelSzamla){
+                ossz+=((HitelSzamla) szamla).getHitelKeret();
             }
         }
         return ossz;
